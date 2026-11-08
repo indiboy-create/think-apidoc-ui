@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <title>Apidoc</title>
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./assets/vendor/layui/css/layui.css">
+  <link rel="stylesheet" href="./assets/vendor/highlight-github.min.css" id="ad-hljs-light">
+  <link rel="stylesheet" href="./assets/vendor/highlight-github-dark.min.css" id="ad-hljs-dark" disabled>
+  <link rel="stylesheet" href="./assets/css/apidoc.css">
+  <link rel="stylesheet" href="./assets/css/custom.css">
+</head>
+<body>
+  <div id="ad-loading" class="ad-loading">
+    <div class="ad-loading-spinner"></div>
+    <p data-i18n="common.loading">加载中...</p>
+  </div>
+
+  <header class="ad-header" id="ad-header">
+    <div class="ad-header-left">
+      <button type="button" class="ad-btn ad-btn-icon ad-menu-toggle" id="ad-menu-toggle" title="菜单">
+        <i class="layui-icon layui-icon-spread-left"></i>
+      </button>
+      <a class="ad-logo" href="#/home">
+        <span class="ad-logo-mark">A</span>
+        <span class="ad-logo-text" id="ad-logo-title">Apidoc</span>
+      </a>
+    </div>
+    <div class="ad-header-right">
+      <button type="button" class="ad-btn ad-btn-icon" id="ad-theme-btn" title="切换主题">
+        <i class="layui-icon layui-icon-light"></i>
+      </button>
+      <button type="button" class="ad-btn" id="ad-global-params-btn">
+        <i class="layui-icon layui-icon-set"></i><span class="ad-btn-text" data-i18n="globalParam.title">全局参数</span>
+      </button>
+      <div class="ad-dropdown-host" id="ad-host-select"></div>
+      <div class="ad-dropdown-lang" id="ad-lang-select"></div>
+      <div class="ad-dropdown-tools" id="ad-tools-select"></div>
+    </div>
+  </header>
+
+  <aside class="ad-side" id="ad-side">
+    <div class="ad-side-head">
+      <div class="ad-app-select" id="ad-app-select"></div>
+      <div class="ad-search">
+        <i class="layui-icon layui-icon-search"></i>
+        <input type="text" id="ad-search-input" autocomplete="off" data-i18n-placeholder="side.search.placeholder" placeholder="名称 URL">
+      </div>
+    </div>
+    <div class="ad-side-tabs">
+      <div class="ad-side-tab-list">
+        <a class="ad-side-tab active" data-tab="api" data-i18n="common.api">接口</a>
+        <a class="ad-side-tab" data-tab="docs" data-i18n="common.docs">文档</a>
+      </div>
+      <div class="ad-side-tools">
+        <button type="button" class="ad-btn ad-btn-icon ad-btn-sm" id="ad-tags-btn" title="标签">
+          <i class="layui-icon layui-icon-note"></i>
+        </button>
+        <button type="button" class="ad-btn ad-btn-icon ad-btn-sm" id="ad-reload-menu" title="更新菜单">
+          <i class="layui-icon layui-icon-refresh"></i>
+        </button>
+        <button type="button" class="ad-btn ad-btn-icon ad-btn-sm" id="ad-toggle-menu" title="展开全部">
+          <i class="layui-icon layui-icon-down"></i>
+        </button>
+      </div>
+    </div>
+    <div class="ad-side-filter" id="ad-tags-panel"></div>
+    <div class="ad-menu-wrap" id="ad-menu"></div>
+    <div class="ad-dragline" id="ad-dragline"></div>
+  </aside>
+  <div class="ad-side-mask" id="ad-side-mask"></div>
+
+  <main class="ad-main" id="ad-main">
+    <div class="ad-tabs" id="ad-tabs"></div>
+    <div class="ad-content" id="ad-content">
+      <div class="ad-skeleton">
+        <div class="ad-skeleton-line w40"></div>
+        <div class="ad-skeleton-line w60"></div>
+        <div class="ad-skeleton-line w90"></div>
+        <div class="ad-skeleton-block"></div>
+      </div>
+    </div>
+    <footer class="ad-footer" id="ad-footer"></footer>
+  </main>
+
+  <div class="ad-global-error" id="ad-global-error" hidden></div>
+
+  <script src="./config.js"></script>
+  <script src="./assets/vendor/layui/layui.js"></script>
+  <script src="./assets/vendor/marked.umd.js"></script>
+  <script src="./assets/vendor/highlight.min.js"></script>
+  <script src="./assets/vendor/mock.min.js"></script>
+  <script src="./assets/utils/md5.js"></script>
+  <script src="./assets/js/core/utils.js"></script>
+  <script src="./assets/js/core/state.js"></script>
+  <script src="./assets/js/core/i18n.js"></script>
+  <script src="./assets/js/core/mock.js"></script>
+  <script src="./assets/js/core/code.js"></script>
+  <script src="./assets/js/core/markdown.js"></script>
+  <script src="./assets/js/core/http.js"></script>
+  <script src="./assets/js/core/api.js"></script>
+  <script src="./assets/js/core/debug.js"></script>
+  <script src="./assets/js/components/auth.js"></script>
+  <script src="./assets/js/components/global-params.js"></script>
+  <script src="./assets/js/components/api-table.js"></script>
+  <script src="./assets/js/components/sidebar.js"></script>
+  <script src="./assets/js/components/tabs.js"></script>
+  <script src="./assets/js/pages/home.js"></script>
+  <script src="./assets/js/pages/api-detail.js"></script>
+  <script src="./assets/js/pages/md-detail.js"></script>
+  <script src="./assets/js/pages/generator.js"></script>
+  <script src="./assets/js/pages/code-template.js"></script>
+  <script src="./assets/js/pages/api-share.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
